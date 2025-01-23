@@ -1,0 +1,9 @@
+﻿-IC:\Users\quarc_user\Desktop\GitRepos\ECEN5638\SystemID
+-IC:\Users\quarc_user\Desktop\GitRepos\ECEN5638\SystemID\SRV02_demo_quarc_win64
+-I"C:\Program Files\MATLAB\R2024a\extern\include"
+-I"C:\Program Files\MATLAB\R2024a\simulink\include"
+-I"C:\Program Files\MATLAB\R2024a\rtw\c\src"
+-I"C:\Program Files\MATLAB\R2024a\rtw\c\src\ext_mode\common"
+-I"C:\Program Files\MATLAB\R2024a\toolbox\coder\rtiostream\src"
+-I"C:\Program Files\MATLAB\R2024a\toolbox\coder\rtiostream\src\utils"
+-I"C:\Program Files\Quanser\QUARC\include"
