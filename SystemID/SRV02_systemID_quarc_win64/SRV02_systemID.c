@@ -9,7 +9,7 @@
  *
  * Model version              : 9.0
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Jan 23 14:19:10 2025
+ * C source code generated on : Thu Jan 23 15:19:34 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -40,6 +40,8 @@ RT_MODEL_SRV02_systemID_T *const SRV02_systemID_M = &SRV02_systemID_M_;
 void SRV02_systemID_output(void)
 {
   real_T rtb_HILReadEncoder;
+  real_T tmp;
+  int32_T i;
 
   /* S-Function (hil_read_encoder_block): '<S1>/HIL Read Encoder' */
 
@@ -78,20 +80,35 @@ void SRV02_systemID_output(void)
   }
 
   /* Sin: '<Root>/Sine Wave' */
-  rtb_HILReadEncoder = sin(SRV02_systemID_P.SineWave_Freq *
-    SRV02_systemID_M->Timing.t[0] + SRV02_systemID_P.SineWave_Phase) *
-    SRV02_systemID_P.SineWave_Amp + SRV02_systemID_P.SineWave_Bias;
+  tmp = SRV02_systemID_M->Timing.t[0];
+
+  /* Sum: '<Root>/Sum of Elements' */
+  rtb_HILReadEncoder = -0.0;
+  for (i = 0; i < 200; i++) {
+    /* Sum: '<Root>/Sum of Elements' incorporates:
+     *  Sin: '<Root>/Sine Wave'
+     */
+    rtb_HILReadEncoder += sin
+      (SRV02_systemID_ConstP.SineWave_rtw_collapsed_sub_expr[i] * 2.0 *
+       3.1415926535897931 / SRV02_systemID_P.T * tmp +
+       SRV02_systemID_P.SineWave_Phase[i]) * SRV02_systemID_P.SineWave_Amp +
+      SRV02_systemID_P.SineWave_Bias;
+  }
+
+  /* Sum: '<Root>/Sum of Elements' */
+  SRV02_systemID_B.SumofElements = rtb_HILReadEncoder;
 
   /* Saturate: '<S1>/Saturation' */
-  if (rtb_HILReadEncoder > SRV02_systemID_P.Saturation_UpperSat) {
+  if (SRV02_systemID_B.SumofElements > SRV02_systemID_P.Saturation_UpperSat) {
     /* Saturate: '<S1>/Saturation' */
     SRV02_systemID_B.Saturation = SRV02_systemID_P.Saturation_UpperSat;
-  } else if (rtb_HILReadEncoder < SRV02_systemID_P.Saturation_LowerSat) {
+  } else if (SRV02_systemID_B.SumofElements <
+             SRV02_systemID_P.Saturation_LowerSat) {
     /* Saturate: '<S1>/Saturation' */
     SRV02_systemID_B.Saturation = SRV02_systemID_P.Saturation_LowerSat;
   } else {
     /* Saturate: '<S1>/Saturation' */
-    SRV02_systemID_B.Saturation = rtb_HILReadEncoder;
+    SRV02_systemID_B.Saturation = SRV02_systemID_B.SumofElements;
   }
 
   /* End of Saturate: '<S1>/Saturation' */
@@ -117,6 +134,9 @@ void SRV02_systemID_output(void)
       rtmSetErrorStatus(SRV02_systemID_M, _rt_error_message);
     }
   }
+
+  /* Clock: '<Root>/Clock' */
+  SRV02_systemID_B.Clock = SRV02_systemID_M->Timing.t[0];
 }
 
 /* Model update function */
@@ -450,15 +470,15 @@ RT_MODEL_SRV02_systemID_T *SRV02_systemID(void)
     SRV02_systemID_M->Timing.sampleHits = (&mdlSampleHits[0]);
   }
 
-  rtmSetTFinal(SRV02_systemID_M, -1);
+  rtmSetTFinal(SRV02_systemID_M, 11.898);
   SRV02_systemID_M->Timing.stepSize0 = 0.002;
   SRV02_systemID_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  SRV02_systemID_M->Sizes.checksums[0] = (2325402191U);
-  SRV02_systemID_M->Sizes.checksums[1] = (112796141U);
-  SRV02_systemID_M->Sizes.checksums[2] = (3974724143U);
-  SRV02_systemID_M->Sizes.checksums[3] = (1759434018U);
+  SRV02_systemID_M->Sizes.checksums[0] = (2069166836U);
+  SRV02_systemID_M->Sizes.checksums[1] = (3187997609U);
+  SRV02_systemID_M->Sizes.checksums[2] = (131380520U);
+  SRV02_systemID_M->Sizes.checksums[3] = (2686976393U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -485,7 +505,9 @@ RT_MODEL_SRV02_systemID_T *SRV02_systemID(void)
   {
     SRV02_systemID_B.ServoCountstoRad = 0.0;
     SRV02_systemID_B.HILReadAnalog = 0.0;
+    SRV02_systemID_B.SumofElements = 0.0;
     SRV02_systemID_B.Saturation = 0.0;
+    SRV02_systemID_B.Clock = 0.0;
   }
 
   /* parameters */
@@ -532,9 +554,9 @@ RT_MODEL_SRV02_systemID_T *SRV02_systemID(void)
   SRV02_systemID_M->Sizes.numU = (0);  /* Number of model inputs */
   SRV02_systemID_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   SRV02_systemID_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  SRV02_systemID_M->Sizes.numBlocks = (9);/* Number of blocks */
-  SRV02_systemID_M->Sizes.numBlockIO = (3);/* Number of block outputs */
-  SRV02_systemID_M->Sizes.numBlockPrms = (74);/* Sum of parameter "widths" */
+  SRV02_systemID_M->Sizes.numBlocks = (14);/* Number of blocks */
+  SRV02_systemID_M->Sizes.numBlockIO = (5);/* Number of block outputs */
+  SRV02_systemID_M->Sizes.numBlockPrms = (273);/* Sum of parameter "widths" */
   return SRV02_systemID_M;
 }
 

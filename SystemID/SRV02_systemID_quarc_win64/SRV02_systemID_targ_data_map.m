@@ -5,7 +5,7 @@
     ;%***********************
     
         nTotData      = 0; %add to this count as we go
-        nTotSects     = 5;
+        nTotSects     = 6;
         sectIdxOffset = 0;
 
         ;%
@@ -28,118 +28,125 @@
         ;%
         ;% Auto data (SRV02_systemID_P)
         ;%
-            section.nData     = 3;
-            section.data(3)  = dumData; %prealloc
+            section.nData     = 1;
+            section.data(1)  = dumData; %prealloc
 
-                    ;% SRV02_systemID_P.HILWrite_analog_channels
+                    ;% SRV02_systemID_P.T
                     section.data(1).logicalSrcIdx = 0;
                     section.data(1).dtTransOffset = 0;
-
-                    ;% SRV02_systemID_P.HILReadEncoder_channels
-                    section.data(2).logicalSrcIdx = 1;
-                    section.data(2).dtTransOffset = 1;
-
-                    ;% SRV02_systemID_P.HILReadAnalog_channels
-                    section.data(3).logicalSrcIdx = 2;
-                    section.data(3).dtTransOffset = 2;
 
             nTotData = nTotData + section.nData;
             paramMap.sections(1) = section;
             clear section
 
-            section.nData     = 22;
-            section.data(22)  = dumData; %prealloc
+            section.nData     = 3;
+            section.data(3)  = dumData; %prealloc
 
-                    ;% SRV02_systemID_P.HILInitialize_OOTerminate
-                    section.data(1).logicalSrcIdx = 3;
+                    ;% SRV02_systemID_P.HILWrite_analog_channels
+                    section.data(1).logicalSrcIdx = 1;
                     section.data(1).dtTransOffset = 0;
 
-                    ;% SRV02_systemID_P.HILInitialize_OOExit
-                    section.data(2).logicalSrcIdx = 4;
+                    ;% SRV02_systemID_P.HILReadEncoder_channels
+                    section.data(2).logicalSrcIdx = 2;
                     section.data(2).dtTransOffset = 1;
 
-                    ;% SRV02_systemID_P.HILInitialize_OOStart
-                    section.data(3).logicalSrcIdx = 5;
+                    ;% SRV02_systemID_P.HILReadAnalog_channels
+                    section.data(3).logicalSrcIdx = 3;
                     section.data(3).dtTransOffset = 2;
-
-                    ;% SRV02_systemID_P.HILInitialize_OOEnter
-                    section.data(4).logicalSrcIdx = 6;
-                    section.data(4).dtTransOffset = 3;
-
-                    ;% SRV02_systemID_P.HILInitialize_AOFinal
-                    section.data(5).logicalSrcIdx = 7;
-                    section.data(5).dtTransOffset = 4;
-
-                    ;% SRV02_systemID_P.HILInitialize_POFinal
-                    section.data(6).logicalSrcIdx = 8;
-                    section.data(6).dtTransOffset = 5;
-
-                    ;% SRV02_systemID_P.HILInitialize_AIHigh
-                    section.data(7).logicalSrcIdx = 9;
-                    section.data(7).dtTransOffset = 6;
-
-                    ;% SRV02_systemID_P.HILInitialize_AILow
-                    section.data(8).logicalSrcIdx = 10;
-                    section.data(8).dtTransOffset = 7;
-
-                    ;% SRV02_systemID_P.HILInitialize_AOHigh
-                    section.data(9).logicalSrcIdx = 11;
-                    section.data(9).dtTransOffset = 8;
-
-                    ;% SRV02_systemID_P.HILInitialize_AOLow
-                    section.data(10).logicalSrcIdx = 12;
-                    section.data(10).dtTransOffset = 9;
-
-                    ;% SRV02_systemID_P.HILInitialize_AOInitial
-                    section.data(11).logicalSrcIdx = 13;
-                    section.data(11).dtTransOffset = 10;
-
-                    ;% SRV02_systemID_P.HILInitialize_AOWatchdog
-                    section.data(12).logicalSrcIdx = 14;
-                    section.data(12).dtTransOffset = 11;
-
-                    ;% SRV02_systemID_P.HILInitialize_POFrequency
-                    section.data(13).logicalSrcIdx = 15;
-                    section.data(13).dtTransOffset = 12;
-
-                    ;% SRV02_systemID_P.HILInitialize_POInitial
-                    section.data(14).logicalSrcIdx = 16;
-                    section.data(14).dtTransOffset = 13;
-
-                    ;% SRV02_systemID_P.HILInitialize_POWatchdog
-                    section.data(15).logicalSrcIdx = 17;
-                    section.data(15).dtTransOffset = 14;
-
-                    ;% SRV02_systemID_P.ServoCountstoRad_Gain
-                    section.data(16).logicalSrcIdx = 18;
-                    section.data(16).dtTransOffset = 15;
-
-                    ;% SRV02_systemID_P.SineWave_Amp
-                    section.data(17).logicalSrcIdx = 19;
-                    section.data(17).dtTransOffset = 16;
-
-                    ;% SRV02_systemID_P.SineWave_Bias
-                    section.data(18).logicalSrcIdx = 20;
-                    section.data(18).dtTransOffset = 17;
-
-                    ;% SRV02_systemID_P.SineWave_Freq
-                    section.data(19).logicalSrcIdx = 21;
-                    section.data(19).dtTransOffset = 18;
-
-                    ;% SRV02_systemID_P.SineWave_Phase
-                    section.data(20).logicalSrcIdx = 22;
-                    section.data(20).dtTransOffset = 19;
-
-                    ;% SRV02_systemID_P.Saturation_UpperSat
-                    section.data(21).logicalSrcIdx = 23;
-                    section.data(21).dtTransOffset = 20;
-
-                    ;% SRV02_systemID_P.Saturation_LowerSat
-                    section.data(22).logicalSrcIdx = 24;
-                    section.data(22).dtTransOffset = 21;
 
             nTotData = nTotData + section.nData;
             paramMap.sections(2) = section;
+            clear section
+
+            section.nData     = 21;
+            section.data(21)  = dumData; %prealloc
+
+                    ;% SRV02_systemID_P.HILInitialize_OOTerminate
+                    section.data(1).logicalSrcIdx = 4;
+                    section.data(1).dtTransOffset = 0;
+
+                    ;% SRV02_systemID_P.HILInitialize_OOExit
+                    section.data(2).logicalSrcIdx = 5;
+                    section.data(2).dtTransOffset = 1;
+
+                    ;% SRV02_systemID_P.HILInitialize_OOStart
+                    section.data(3).logicalSrcIdx = 6;
+                    section.data(3).dtTransOffset = 2;
+
+                    ;% SRV02_systemID_P.HILInitialize_OOEnter
+                    section.data(4).logicalSrcIdx = 7;
+                    section.data(4).dtTransOffset = 3;
+
+                    ;% SRV02_systemID_P.HILInitialize_AOFinal
+                    section.data(5).logicalSrcIdx = 8;
+                    section.data(5).dtTransOffset = 4;
+
+                    ;% SRV02_systemID_P.HILInitialize_POFinal
+                    section.data(6).logicalSrcIdx = 9;
+                    section.data(6).dtTransOffset = 5;
+
+                    ;% SRV02_systemID_P.HILInitialize_AIHigh
+                    section.data(7).logicalSrcIdx = 10;
+                    section.data(7).dtTransOffset = 6;
+
+                    ;% SRV02_systemID_P.HILInitialize_AILow
+                    section.data(8).logicalSrcIdx = 11;
+                    section.data(8).dtTransOffset = 7;
+
+                    ;% SRV02_systemID_P.HILInitialize_AOHigh
+                    section.data(9).logicalSrcIdx = 12;
+                    section.data(9).dtTransOffset = 8;
+
+                    ;% SRV02_systemID_P.HILInitialize_AOLow
+                    section.data(10).logicalSrcIdx = 13;
+                    section.data(10).dtTransOffset = 9;
+
+                    ;% SRV02_systemID_P.HILInitialize_AOInitial
+                    section.data(11).logicalSrcIdx = 14;
+                    section.data(11).dtTransOffset = 10;
+
+                    ;% SRV02_systemID_P.HILInitialize_AOWatchdog
+                    section.data(12).logicalSrcIdx = 15;
+                    section.data(12).dtTransOffset = 11;
+
+                    ;% SRV02_systemID_P.HILInitialize_POFrequency
+                    section.data(13).logicalSrcIdx = 16;
+                    section.data(13).dtTransOffset = 12;
+
+                    ;% SRV02_systemID_P.HILInitialize_POInitial
+                    section.data(14).logicalSrcIdx = 17;
+                    section.data(14).dtTransOffset = 13;
+
+                    ;% SRV02_systemID_P.HILInitialize_POWatchdog
+                    section.data(15).logicalSrcIdx = 18;
+                    section.data(15).dtTransOffset = 14;
+
+                    ;% SRV02_systemID_P.ServoCountstoRad_Gain
+                    section.data(16).logicalSrcIdx = 19;
+                    section.data(16).dtTransOffset = 15;
+
+                    ;% SRV02_systemID_P.SineWave_Amp
+                    section.data(17).logicalSrcIdx = 20;
+                    section.data(17).dtTransOffset = 16;
+
+                    ;% SRV02_systemID_P.SineWave_Bias
+                    section.data(18).logicalSrcIdx = 21;
+                    section.data(18).dtTransOffset = 17;
+
+                    ;% SRV02_systemID_P.SineWave_Phase
+                    section.data(19).logicalSrcIdx = 22;
+                    section.data(19).dtTransOffset = 18;
+
+                    ;% SRV02_systemID_P.Saturation_UpperSat
+                    section.data(20).logicalSrcIdx = 23;
+                    section.data(20).dtTransOffset = 218;
+
+                    ;% SRV02_systemID_P.Saturation_LowerSat
+                    section.data(21).logicalSrcIdx = 24;
+                    section.data(21).dtTransOffset = 219;
+
+            nTotData = nTotData + section.nData;
+            paramMap.sections(3) = section;
             clear section
 
             section.nData     = 4;
@@ -162,7 +169,7 @@
                     section.data(4).dtTransOffset = 3;
 
             nTotData = nTotData + section.nData;
-            paramMap.sections(3) = section;
+            paramMap.sections(4) = section;
             clear section
 
             section.nData     = 4;
@@ -185,7 +192,7 @@
                     section.data(4).dtTransOffset = 6;
 
             nTotData = nTotData + section.nData;
-            paramMap.sections(4) = section;
+            paramMap.sections(5) = section;
             clear section
 
             section.nData     = 38;
@@ -344,7 +351,7 @@
                     section.data(38).dtTransOffset = 37;
 
             nTotData = nTotData + section.nData;
-            paramMap.sections(5) = section;
+            paramMap.sections(6) = section;
             clear section
 
 
@@ -388,8 +395,8 @@
         ;%
         ;% Auto data (SRV02_systemID_B)
         ;%
-            section.nData     = 3;
-            section.data(3)  = dumData; %prealloc
+            section.nData     = 5;
+            section.data(5)  = dumData; %prealloc
 
                     ;% SRV02_systemID_B.ServoCountstoRad
                     section.data(1).logicalSrcIdx = 0;
@@ -399,9 +406,17 @@
                     section.data(2).logicalSrcIdx = 1;
                     section.data(2).dtTransOffset = 1;
 
-                    ;% SRV02_systemID_B.Saturation
+                    ;% SRV02_systemID_B.SumofElements
                     section.data(3).logicalSrcIdx = 2;
                     section.data(3).dtTransOffset = 2;
+
+                    ;% SRV02_systemID_B.Saturation
+                    section.data(4).logicalSrcIdx = 3;
+                    section.data(4).dtTransOffset = 3;
+
+                    ;% SRV02_systemID_B.Clock
+                    section.data(5).logicalSrcIdx = 4;
+                    section.data(5).dtTransOffset = 4;
 
             nTotData = nTotData + section.nData;
             sigMap.sections(1) = section;
@@ -494,8 +509,8 @@
             dworkMap.sections(2) = section;
             clear section
 
-            section.nData     = 5;
-            section.data(5)  = dumData; %prealloc
+            section.nData     = 8;
+            section.data(8)  = dumData; %prealloc
 
                     ;% SRV02_systemID_DW.HILReadEncoder_PWORK
                     section.data(1).logicalSrcIdx = 8;
@@ -509,13 +524,25 @@
                     section.data(3).logicalSrcIdx = 10;
                     section.data(3).dtTransOffset = 2;
 
-                    ;% SRV02_systemID_DW.Scope_PWORK.LoggedData
+                    ;% SRV02_systemID_DW.ToWorkspace2_PWORK.LoggedData
                     section.data(4).logicalSrcIdx = 11;
                     section.data(4).dtTransOffset = 3;
 
-                    ;% SRV02_systemID_DW.Scope1_PWORK.LoggedData
+                    ;% SRV02_systemID_DW.Scope_PWORK.LoggedData
                     section.data(5).logicalSrcIdx = 12;
                     section.data(5).dtTransOffset = 4;
+
+                    ;% SRV02_systemID_DW.Scope1_PWORK.LoggedData
+                    section.data(6).logicalSrcIdx = 13;
+                    section.data(6).dtTransOffset = 6;
+
+                    ;% SRV02_systemID_DW.ToWorkspace_PWORK.LoggedData
+                    section.data(7).logicalSrcIdx = 14;
+                    section.data(7).dtTransOffset = 7;
+
+                    ;% SRV02_systemID_DW.ToWorkspace1_PWORK.LoggedData
+                    section.data(8).logicalSrcIdx = 15;
+                    section.data(8).dtTransOffset = 8;
 
             nTotData = nTotData + section.nData;
             dworkMap.sections(3) = section;
@@ -525,19 +552,19 @@
             section.data(4)  = dumData; %prealloc
 
                     ;% SRV02_systemID_DW.HILInitialize_ClockModes
-                    section.data(1).logicalSrcIdx = 13;
+                    section.data(1).logicalSrcIdx = 16;
                     section.data(1).dtTransOffset = 0;
 
                     ;% SRV02_systemID_DW.HILInitialize_QuadratureModes
-                    section.data(2).logicalSrcIdx = 14;
+                    section.data(2).logicalSrcIdx = 17;
                     section.data(2).dtTransOffset = 1;
 
                     ;% SRV02_systemID_DW.HILInitialize_InitialEICounts
-                    section.data(3).logicalSrcIdx = 15;
+                    section.data(3).logicalSrcIdx = 18;
                     section.data(3).dtTransOffset = 3;
 
                     ;% SRV02_systemID_DW.HILReadEncoder_Buffer
-                    section.data(4).logicalSrcIdx = 16;
+                    section.data(4).logicalSrcIdx = 19;
                     section.data(4).dtTransOffset = 5;
 
             nTotData = nTotData + section.nData;
@@ -570,8 +597,8 @@
     ;%
 
 
-    targMap.checksum0 = 2325402191;
-    targMap.checksum1 = 112796141;
-    targMap.checksum2 = 3974724143;
-    targMap.checksum3 = 1759434018;
+    targMap.checksum0 = 2069166836;
+    targMap.checksum1 = 3187997609;
+    targMap.checksum2 = 131380520;
+    targMap.checksum3 = 2686976393;
 

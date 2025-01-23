@@ -9,7 +9,7 @@
  *
  * Model version              : 9.0
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Jan 23 14:19:10 2025
+ * C source code generated on : Thu Jan 23 15:19:34 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -70,14 +70,14 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&SRV02_systemID_B.ServoCountstoRad), 0, 0, 3 }
+  { (char_T *)(&SRV02_systemID_B.ServoCountstoRad), 0, 0, 5 }
   ,
 
   { (char_T *)(&SRV02_systemID_DW.HILInitialize_AIMinimums[0]), 0, 0, 13 },
 
   { (char_T *)(&SRV02_systemID_DW.HILInitialize_Card), 15, 0, 1 },
 
-  { (char_T *)(&SRV02_systemID_DW.HILReadEncoder_PWORK), 11, 0, 5 },
+  { (char_T *)(&SRV02_systemID_DW.HILReadEncoder_PWORK), 11, 0, 9 },
 
   { (char_T *)(&SRV02_systemID_DW.HILInitialize_ClockModes), 6, 0, 6 }
 };
@@ -90,9 +90,11 @@ static DataTypeTransitionTable rtBTransTable = {
 
 /* data type transitions for Parameters structure */
 static DataTypeTransition rtPTransitions[] = {
+  { (char_T *)(&SRV02_systemID_P.T), 0, 0, 1 },
+
   { (char_T *)(&SRV02_systemID_P.HILWrite_analog_channels), 7, 0, 3 },
 
-  { (char_T *)(&SRV02_systemID_P.HILInitialize_OOTerminate), 0, 0, 22 },
+  { (char_T *)(&SRV02_systemID_P.HILInitialize_OOTerminate), 0, 0, 220 },
 
   { (char_T *)(&SRV02_systemID_P.HILInitialize_CKChannels), 6, 0, 4 },
 
@@ -103,7 +105,7 @@ static DataTypeTransition rtPTransitions[] = {
 
 /* data type transition table for Parameters structure */
 static DataTypeTransitionTable rtPTransTable = {
-  5U,
+  6U,
   rtPTransitions
 };
 

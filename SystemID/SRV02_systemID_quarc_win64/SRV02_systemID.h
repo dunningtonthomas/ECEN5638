@@ -9,7 +9,7 @@
  *
  * Model version              : 9.0
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Jan 23 14:19:10 2025
+ * C source code generated on : Thu Jan 23 15:19:34 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -868,7 +868,9 @@
 typedef struct {
   real_T ServoCountstoRad;             /* '<S1>/Servo:  Counts to Rad' */
   real_T HILReadAnalog;                /* '<S1>/HIL Read Analog' */
+  real_T SumofElements;                /* '<Root>/Sum of Elements' */
   real_T Saturation;                   /* '<S1>/Saturation' */
+  real_T Clock;                        /* '<Root>/Clock' */
 } B_SRV02_systemID_T;
 
 /* Block states (default storage) for system '<Root>' */
@@ -886,17 +888,37 @@ typedef struct {
   void *HILWrite_PWORK;                /* '<S1>/HIL Write' */
   struct {
     void *LoggedData;
+  } ToWorkspace2_PWORK;                /* '<Root>/To Workspace2' */
+
+  struct {
+    void *LoggedData[2];
   } Scope_PWORK;                       /* '<Root>/Scope' */
 
   struct {
     void *LoggedData;
   } Scope1_PWORK;                      /* '<Root>/Scope1' */
 
+  struct {
+    void *LoggedData;
+  } ToWorkspace_PWORK;                 /* '<Root>/To Workspace' */
+
+  struct {
+    void *LoggedData;
+  } ToWorkspace1_PWORK;                /* '<Root>/To Workspace1' */
+
   int32_T HILInitialize_ClockModes;    /* '<S1>/HIL Initialize' */
   int32_T HILInitialize_QuadratureModes[2];/* '<S1>/HIL Initialize' */
   int32_T HILInitialize_InitialEICounts[2];/* '<S1>/HIL Initialize' */
   int32_T HILReadEncoder_Buffer;       /* '<S1>/HIL Read Encoder' */
 } DW_SRV02_systemID_T;
+
+/* Constant parameters (default storage) */
+typedef struct {
+  /* Expression: (1:N)*2*pi/T
+   * Referenced by: '<Root>/Sine Wave'
+   */
+  real_T SineWave_rtw_collapsed_sub_expr[200];
+} ConstP_SRV02_systemID_T;
 
 /* Backward compatible GRT Identifiers */
 #define rtB                            SRV02_systemID_B
@@ -905,9 +927,14 @@ typedef struct {
 #define Parameters                     P_SRV02_systemID_T
 #define rtDWork                        SRV02_systemID_DW
 #define D_Work                         DW_SRV02_systemID_T
+#define ConstParam                     ConstP_SRV02_systemID_T
+#define rtcP                           SRV02_systemID_ConstP
 
 /* Parameters (default storage) */
 struct P_SRV02_systemID_T_ {
+  real_T T;                            /* Variable: T
+                                        * Referenced by: '<Root>/Sine Wave'
+                                        */
   uint32_T HILWrite_analog_channels; /* Mask Parameter: HILWrite_analog_channels
                                       * Referenced by: '<S1>/HIL Write'
                                       */
@@ -965,16 +992,13 @@ struct P_SRV02_systemID_T_ {
   real_T ServoCountstoRad_Gain;        /* Expression: -2*pi/2^12
                                         * Referenced by: '<S1>/Servo:  Counts to Rad'
                                         */
-  real_T SineWave_Amp;                 /* Expression: 1
+  real_T SineWave_Amp;                 /* Expression: 1/3
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
   real_T SineWave_Bias;                /* Expression: 0
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
-  real_T SineWave_Freq;                /* Expression: 1
-                                        * Referenced by: '<Root>/Sine Wave'
-                                        */
-  real_T SineWave_Phase;               /* Expression: 0
+  real_T SineWave_Phase[200];          /* Expression: rand(1,N)*2*pi
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
   real_T Saturation_UpperSat;          /* Expression: 10
@@ -1241,6 +1265,9 @@ extern B_SRV02_systemID_T SRV02_systemID_B;
 
 /* Block states (default storage) */
 extern DW_SRV02_systemID_T SRV02_systemID_DW;
+
+/* Constant parameters (default storage) */
+extern const ConstP_SRV02_systemID_T SRV02_systemID_ConstP;
 
 /* Model entry point functions */
 extern void SRV02_systemID_initialize(void);
