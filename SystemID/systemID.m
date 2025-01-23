@@ -25,3 +25,4 @@ stem(frequencyVec, abs(signalFFT) ./ length(tVec));
 % no longer scales with the length of the time vector when we normalize
 
 
+%
