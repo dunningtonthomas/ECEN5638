@@ -17,20 +17,6 @@ frequencyVec = frequencyVec(belowNyquist);
 % Define the transfer function
 H = yFFT ./ uFFT;
 
-%% Servo Base Unit 
-K = 1.53;
-tau = 0.0486;
-s = tf('s');
-H_base = K / (s * (tau*s + 1));
-Hm = H_base;
-model_sb = sim('sysID_model.slx');
-model_sb_uFFT = fft(model_sb.u)/length(model_sb.t);
-model_sb_yFFT = fft(model_sb.y)/length(model_sb.t);
-
-Hmsb_experiment = model_sb_yFFT ./ model_sb_uFFT;
-Hmsb_experiment = Hmsb_experiment(belowNyquist);
-
-
 %% Model 1
 % K1 = db2mag(-6.567);
 % omega_0 = 1.657;
@@ -49,15 +35,7 @@ Hm1_experiment = model_1_yFFT ./ model_1_uFFT;
 Hm1_experiment = Hm1_experiment(belowNyquist);
 
 %% Model 2
-omega_1 = 1.972;
-Hm2 = K1 * (omega_0 * omega_1 / (s * (s + omega_1)));
-Hm = Hm2;
-model_2 = sim('sysID_model.slx');
-model_2_uFFT = fft(model_2.u)/length(model_2.t);
-model_2_yFFT = fft(model_2.y)/length(model_2.t);
-
-Hm2_experiment = model_2_yFFT ./ model_2_uFFT;
-Hm2_experiment = Hm2_experiment(belowNyquist);
+omega_1 = 
 
 
 %% Model 2
@@ -77,7 +55,7 @@ Hm2_experiment = Hm2_experiment(belowNyquist);
 % Hm2_experiment = Hm2_experiment(belowNyquist);
 
 %% Save Data
-% save('SysID_Data\goodData2.mat')
+% save('SysID_Data\goodData.mat')
 % 
 
 
@@ -107,13 +85,11 @@ figure();
 semilogx(frequencyVec, db(abs(H)))
 grid on
 hold on
-% semilogx(frequencyVec, db(abs(Hm1_experiment)))
-% semilogx(frequencyVec, db(abs(Hmsb_experiment)))
+semilogx(frequencyVec, db(abs(Hm1_experiment)))
 % semilogx(frequencyVec, db(abs(Hm2_experiment)))
 xlabel('Frequency (rad/s)')
 ylabel('Amplitude (dB)');
 title('Bode Plot')
-legend('Experiment', 'First Order Fit', 'Second Order Fit')
 
 figure();
 semilogx(frequencyVec, rad2deg(angle(H)))

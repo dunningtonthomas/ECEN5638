@@ -7,9 +7,9 @@
  *
  * Code generation for model "SRV02_systemID".
  *
- * Model version              : 9.0
+ * Model version              : 9.1
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Jan 23 15:19:34 2025
+ * C source code generated on : Thu Jan 30 14:48:05 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -992,7 +992,7 @@ struct P_SRV02_systemID_T_ {
   real_T ServoCountstoRad_Gain;        /* Expression: -2*pi/2^12
                                         * Referenced by: '<S1>/Servo:  Counts to Rad'
                                         */
-  real_T SineWave_Amp;                 /* Expression: 1/3
+  real_T SineWave_Amp;                 /* Expression: 1/6
                                         * Referenced by: '<Root>/Sine Wave'
                                         */
   real_T SineWave_Bias;                /* Expression: 0
