@@ -1,0 +1,53 @@
+%% Clean
+close all; clear; clc;
+
+
+%% Input Signal
+T = 15;
+Ts = 0.002;
+Ttrans = 4.9;
+K = 5;
+N = 100; % Number of frequencies we want to excite in the system
+omega0 = 50;
+
+
+%% Define Open Loop Transfer function
+% K = 1.53;
+% tau = 0.0486;
+K = 0.7112;
+tau = 0.4348;
+s = tf('s');
+H_base = K / (s * (tau*s + 1));
+
+%% Define Controller Gains
+Kp = 20;
+Kd = 3;
+Ki = 2;
+
+
+%% Closed Loop Transfer Function
+controller_tf = @(Kp, Ki, Kd) Kd*s^2 + Kp*s + Ki;
+%thetaR_thetaL_tf = H_base * controller_tf / (1 + H_base * controller_tf);
+
+% Values of Kp gains to test
+thetaR_thetaL_tf = H_base * controller_tf(Kp, Ki, Kd) / (1 + H_base * controller_tf(Kp, Ki, Kd));
+
+% Root locus
+% figure()
+% rlocus(thetaR_thetaL_tf)
+
+
+%% Simulate Step Response
+step_response = sim('pid_model.slx');
+
+% Plot response
+figure();
+plot(t, thetaL, 'b-', 'LineWidth', 1.5);  % Plot thetaL with blue solid line
+hold on
+plot(t, thetaR, 'r--', 'LineWidth', 1.5); % Plot thetaR with red dashed line
+
+title('Step Response of \theta_L and \theta_R', 'FontSize', 14);
+xlabel('Time (seconds)', 'FontSize', 12);
+ylabel('Angle (radians)', 'FontSize', 12);
+legend({'\theta_L', '\theta_R'}, 'Location', 'Best', 'FontSize', 12);
+grid on;

@@ -14,7 +14,7 @@ EXT_GEAR_CONFIG = 'HIGH';
 % Encoder Type: set to 'E' or 'EHR'
 ENCODER_TYPE = 'E';
 % Is SRV02 equipped with Tachometer? (i.e. option T): set to 'YES' or 'NO'
-TACH_OPTION = 'YES';
+TACH_OPTION = 'YES'; %CHANGED FROM YES
 % Type of Load: set to 'NONE', 'DISC', or 'BAR'
 LOAD_TYPE = 'GYRO';
 % Amplifier Gain used: 
@@ -58,6 +58,13 @@ else
     [kp,kd] = d_gyro_pd(K, tau, Gg, zeta, wn);    
 end
 %
+
+%% PID Control Gains
+Kp = 20;
+Kd = 3;
+Ki = 2;
+
+
 %% Display
 disp( ' ' );
 disp( 'Specifications: ' );
