@@ -60,9 +60,15 @@ end
 %
 
 %% PID Control Gains
+% Hand tuned gains
 Kp = 20;
 Kd = 3;
 Ki = 2;
+
+% Optimal gains
+% Kp = 13.6402;
+% Ki = 0.2055;
+% Kd = 3.159;
 
 
 %% Display

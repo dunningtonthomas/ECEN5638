@@ -5,26 +5,15 @@ K = 0.7112;
 tau = 0.4348;
 s = tf('s');
 H_base = K / (s * (tau*s + 1));
+Kp = 20;
+Kd = 3;
+Ki = 2;
 
-% Hand tuned PID gains
-% Kp = 20;
-% Kd = 3;
-% Ki = 2;
-
-% Optimal Gains
-Kp = 13.6402;
-Ki = 0.2055;
-Kd = 3.159;
-
-% Define Transfer Function
-controller_tf = @(Kp, Ki, Kd) Kp + Ki / s + Kd*s;
-thetaR_thetaL_tf = H_base * controller_tf(Kp, Ki, Kd) / (1 + H_base * controller_tf(Kp, Ki, Kd));
-
-% Step info experiment
-stepInfo = stepinfo(thetaL_exp, t_exp);
-
-% Simulate Response
+% Simulate 
 step_response = sim('pid_model.slx');
+
+% Step info
+stepInfo = stepinfo(thetaL_exp, t_exp);
 
 % Plot response
 figure();

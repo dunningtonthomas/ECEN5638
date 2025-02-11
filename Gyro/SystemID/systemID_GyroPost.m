@@ -1,6 +1,6 @@
 %% Post Processing
 % Load Data
-load('SysID_Data\VmAlphaData.mat');
+load('SysID_Data\VmAlphaFinal.mat');
 
 %% FFT
 % Compute the FFT
@@ -172,7 +172,7 @@ semilogx(frequencyVec, db(abs(HmGg_experiment)))
 xlabel('Frequency (rad/s)')
 ylabel('Amplitude (dB)');
 title('Bode Plot')
-legend('Experiment', 'Second Order Fit')
+legend('Experiment', 'First Order Fit')
 
 figure();
 semilogx(frequencyVec, rad2deg(angle(H)))
