@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_gyro".
  *
- * Model version              : 27.0
+ * Model version              : 27.6
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Feb  6 13:17:21 2025
+ * C source code generated on : Thu Feb 13 14:52:31 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping

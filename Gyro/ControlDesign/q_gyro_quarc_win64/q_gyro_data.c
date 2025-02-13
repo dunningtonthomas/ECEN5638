@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_gyro".
  *
- * Model version              : 27.0
+ * Model version              : 27.6
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Feb  6 13:17:21 2025
+ * C source code generated on : Thu Feb 13 14:52:31 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -49,12 +49,12 @@ P_q_gyro_T q_gyro_P = {
   /* Variable: kd
    * Referenced by: '<Root>/Derivative Gain'
    */
-  0.96140202638597871,
+  4.0785865002385915,
 
   /* Variable: kp
    * Referenced by: '<Root>/Proportional Gain'
    */
-  58.757543057637214,
+  104.45785432468836,
 
   /* Mask Parameter: HILReadEncoder_channels
    * Referenced by: '<S1>/HIL Read Encoder'

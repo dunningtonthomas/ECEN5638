@@ -48,6 +48,12 @@ wn = 2*pi*3;
 [ Gg ] = config_gyro();
 %
 %% Calculate PD Control Gains
+
+%Change design specifications
+wn = 8*pi;
+zeta = 0.9;
+
+
 if strcmp ( CONTROL_TYPE, 'STUDENT' )     
     % Proportional gain (V/rad)
     kp = 0;
@@ -58,6 +64,7 @@ else
     [kp,kd] = d_gyro_pd(K, tau, Gg, zeta, wn);    
 end
 %
+
 
 %% PID Control Gains
 % Hand tuned gains

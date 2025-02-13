@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_gyro".
  *
- * Model version              : 27.0
+ * Model version              : 27.6
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Feb  6 13:17:21 2025
+ * C source code generated on : Thu Feb 13 14:52:31 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -72,14 +72,14 @@ static const char_T * rtDataTypeNames[] = {
 
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
-  { (char_T *)(&q_gyro_B.HILReadEncoder_o1), 0, 0, 19 }
+  { (char_T *)(&q_gyro_B.HILReadEncoder_o1), 0, 0, 20 }
   ,
 
   { (char_T *)(&q_gyro_DW.HILInitialize_AIMinimums[0]), 0, 0, 12 },
 
   { (char_T *)(&q_gyro_DW.HILInitialize_Card), 15, 0, 1 },
 
-  { (char_T *)(&q_gyro_DW.HILReadEncoder_PWORK), 11, 0, 6 },
+  { (char_T *)(&q_gyro_DW.HILReadEncoder_PWORK), 11, 0, 7 },
 
   { (char_T *)(&q_gyro_DW.HILInitialize_ClockModes[0]), 6, 0, 17 },
 

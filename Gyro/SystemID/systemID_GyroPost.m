@@ -1,6 +1,6 @@
 %% Post Processing
 % Load Data
-load('SysID_Data\VmAlphaFinal.mat');
+load('SysID_Data\goodData.mat');
 
 %% FFT
 % Compute the FFT
@@ -20,10 +20,10 @@ frequencyVec = frequencyVec(belowNyquist);
 H = yFFT ./ uFFT;
 
 %% Servo Base Unit 
-% K = 1.53;
-% tau = 0.0486;
-K = 0.7112;
-tau = 0.4348;
+K = 1.53;
+tau = 0.0486;
+% K = 0.7112;
+% tau = 0.4348;
 s = tf('s');
 H_base = K / (s * (tau*s + 1));
 Hm = H_base;
@@ -35,18 +35,18 @@ Hmsb_experiment = model_sb_yFFT ./ model_sb_uFFT;
 Hmsb_experiment = Hmsb_experiment(belowNyquist);
 
 %% Alpha Model
-K = db2mag(-8.5);
-omega = 3.3;
-s = tf('s');
-H_alpha = K / (s / omega + 1);
-
-Hm = H_alpha;
-model_sb = sim('sysID_model.slx');
-model_sb_uFFT = fft(model_sb.u)/length(model_sb.t);
-model_sb_yFFT = fft(model_sb.y)/length(model_sb.t);
-
-HmAlpha_experiment = model_sb_yFFT ./ model_sb_uFFT;
-HmAlpha_experiment = HmAlpha_experiment(belowNyquist);
+% K = db2mag(-8.5);
+% omega = 3.3;
+% s = tf('s');
+% H_alpha = K / (s / omega + 1);
+% 
+% Hm = H_alpha;
+% model_sb = sim('sysID_model.slx');
+% model_sb_uFFT = fft(model_sb.u)/length(model_sb.t);
+% model_sb_yFFT = fft(model_sb.y)/length(model_sb.t);
+% 
+% HmAlpha_experiment = model_sb_yFFT ./ model_sb_uFFT;
+% HmAlpha_experiment = HmAlpha_experiment(belowNyquist);
 
 
 %% Gg model
@@ -67,16 +67,16 @@ HmAlpha_experiment = HmAlpha_experiment(belowNyquist);
 
 
 %% Refine Gg Model
-Gg = 1.4655;
-K_spin = 0.7112 * 0.8;
-tau = 0.4348* 0.75;
-H_alpha_model = 1 ./ Gg .* (K_spin / (tau*s + 1));
-Hm = H_alpha_model;
-model_sb = sim('sysID_model.slx');
-model_sb_uFFT = fft(model_sb.u)/length(model_sb.t);
-model_sb_yFFT = fft(model_sb.y)/length(model_sb.t);
-HmGg_experiment = model_sb_yFFT ./ model_sb_uFFT;
-HmGg_experiment = HmGg_experiment(belowNyquist);
+% Gg = 1.4655;
+% K_spin = 0.7112 * 0.8;
+% tau = 0.4348* 0.75;
+% H_alpha_model = 1 ./ Gg .* (K_spin / (tau*s + 1));
+% Hm = H_alpha_model;
+% model_sb = sim('sysID_model.slx');
+% model_sb_uFFT = fft(model_sb.u)/length(model_sb.t);
+% model_sb_yFFT = fft(model_sb.y)/length(model_sb.t);
+% HmGg_experiment = model_sb_yFFT ./ model_sb_uFFT;
+% HmGg_experiment = HmGg_experiment(belowNyquist);
 
 
 
@@ -158,9 +158,9 @@ grid on
 hold on
 %semilogx(frequencyVec, db(abs(HmAlpha_experiment)))
 %semilogx(frequencyVec, db(abs(Hmsb_experiment)))
-% semilogx(frequencyVec, db(abs(Hm1_experiment)))
-% semilogx(frequencyVec, db(abs(Hm2_experiment)))
-semilogx(frequencyVec, db(abs(HmGg_experiment)))
+semilogx(frequencyVec, db(abs(Hm1_experiment)))
+semilogx(frequencyVec, db(abs(Hm2_experiment)))
+% semilogx(frequencyVec, db(abs(HmGg_experiment)))
 
 
 % Plot the model fit
@@ -172,7 +172,7 @@ semilogx(frequencyVec, db(abs(HmGg_experiment)))
 xlabel('Frequency (rad/s)')
 ylabel('Amplitude (dB)');
 title('Bode Plot')
-legend('Experiment', 'First Order Fit')
+legend('Experiment', 'Second Order Fit')
 
 figure();
 semilogx(frequencyVec, rad2deg(angle(H)))

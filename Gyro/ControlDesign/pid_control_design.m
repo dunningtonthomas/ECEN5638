@@ -32,8 +32,8 @@ controller_tf = @(Kp, Ki, Kd) Kp + Ki / s + Kd*s;
 
 % Values of Kp gains to test
 thetaR_thetaL_tf = H_base * controller_tf(Kp, Ki, Kd) / (1 + H_base * controller_tf(Kp, Ki, Kd));
-figure()
-step(thetaR_thetaL_tf)
+% figure()
+% step(thetaR_thetaL_tf)
 
 %% Fmincon to Optimize Gains
 % Define the initial guess for Kp, Ki, and Kd
@@ -44,15 +44,15 @@ lb = [0, 0, 0];  % Lower bounds
 ub = [100, 100, 100];  % Upper bounds
 
 % Define optimization options
-options = optimoptions('fmincon','TolFun', 1e-6,'TolX', 1e-6, 'TolGrad', 1e-6,  'MaxIterations', 100, 'MaxFunctionEvaluations', 1000, 'Display', 'iter');  % Display output during optimization
+%options = optimoptions('fmincon','TolFun', 1e-6,'TolX', 1e-6, 'TolGrad', 1e-6,  'MaxIterations', 100, 'MaxFunctionEvaluations', 1000, 'Display', 'iter');  % Display output during optimization
 % Call fmincon with the options
-[optimal_gains, J_optimal] = fmincon(@cost_fun, initial_guess, [], [], [], [], lb, ub, [], options);
+%[optimal_gains, J_optimal] = fmincon(@cost_fun, initial_guess, [], [], [], [], lb, ub, [], options);
 
 % Display the optimal gains and the corresponding cost
-disp('Optimal Gains:');
-disp(optimal_gains);
-disp('Optimal Cost:');
-disp(J_optimal);
+% disp('Optimal Gains:');
+% disp(optimal_gains);
+% disp('Optimal Cost:');
+% disp(J_optimal);
 
 % Root locus
 % figure()
@@ -75,11 +75,11 @@ legend({'\theta_L', '\theta_R'}, 'Location', 'Best', 'FontSize', 12);
 grid on;
 
 % Simulate with optimal gains
-Ki = optimal_gains(1);
-Kd = optimal_gains(2);
-Kp = optimal_gains(3);
-optimal_step_response = sim('pid_model.slx');
-
-figure(2);
-hold on;
-plot(t, thetaL, 'g-', 'LineWidth', 1.5);  % Plot thetaL with blue solid line
+% Ki = optimal_gains(1);
+% Kd = optimal_gains(2);
+% Kp = optimal_gains(3);
+% optimal_step_response = sim('pid_model.slx');
+% 
+% figure(2);
+% hold on;
+% plot(t, thetaL, 'g-', 'LineWidth', 1.5);  % Plot thetaL with blue solid line

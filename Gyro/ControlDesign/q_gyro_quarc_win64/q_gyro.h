@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_gyro".
  *
- * Model version              : 27.0
+ * Model version              : 27.6
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Feb  6 13:17:21 2025
+ * C source code generated on : Thu Feb 13 14:52:31 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -883,6 +883,7 @@ typedef struct {
   real_T SRV02countstorad;             /* '<S1>/SRV02: counts to rad' */
   real_T Gain;                         /* '<S2>/Gain' */
   real_T Gain_i;                       /* '<S3>/Gain' */
+  real_T Clock;                        /* '<Root>/Clock' */
   real_T epsilon_h;                    /* '<Root>/Negative Feedback' */
   real_T ProportionalGain;             /* '<Root>/Proportional Gain' */
   real_T Add;                          /* '<Root>/Add' */
@@ -911,6 +912,10 @@ typedef struct {
   struct {
     void *LoggedData;
   } thetadeg_PWORK;                    /* '<Root>/theta (deg)' */
+
+  struct {
+    void *LoggedData;
+  } ToWorkspace_PWORK;                 /* '<Root>/To Workspace' */
 
   int32_T HILInitialize_ClockModes[3]; /* '<S1>/HIL Initialize' */
   int32_T HILInitialize_DOStates[8];   /* '<S1>/HIL Initialize' */

@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_gyro".
  *
- * Model version              : 27.0
+ * Model version              : 27.6
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Thu Feb  6 13:17:21 2025
+ * C source code generated on : Thu Feb 13 14:52:31 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -250,6 +250,11 @@ void q_gyro_output(void)
 
     /* Gain: '<S3>/Gain' */
     q_gyro_B.Gain_i = q_gyro_P.Gain_Gain_f * q_gyro_B.SRV02countstorad;
+  }
+
+  /* Clock: '<Root>/Clock' */
+  q_gyro_B.Clock = q_gyro_M->Timing.t[0];
+  if (rtmIsMajorTimeStep(q_gyro_M)) {
   }
 }
 
@@ -739,10 +744,10 @@ RT_MODEL_q_gyro_T *q_gyro(void)
   q_gyro_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  q_gyro_M->Sizes.checksums[0] = (4274244631U);
-  q_gyro_M->Sizes.checksums[1] = (2560633345U);
-  q_gyro_M->Sizes.checksums[2] = (2696968552U);
-  q_gyro_M->Sizes.checksums[3] = (3237162321U);
+  q_gyro_M->Sizes.checksums[0] = (3604633884U);
+  q_gyro_M->Sizes.checksums[1] = (3139662213U);
+  q_gyro_M->Sizes.checksums[2] = (1067329555U);
+  q_gyro_M->Sizes.checksums[3] = (3403728027U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -783,6 +788,7 @@ RT_MODEL_q_gyro_T *q_gyro(void)
     q_gyro_B.SRV02countstorad = 0.0;
     q_gyro_B.Gain = 0.0;
     q_gyro_B.Gain_i = 0.0;
+    q_gyro_B.Clock = 0.0;
     q_gyro_B.epsilon_h = 0.0;
     q_gyro_B.ProportionalGain = 0.0;
     q_gyro_B.Add = 0.0;
@@ -849,8 +855,8 @@ RT_MODEL_q_gyro_T *q_gyro(void)
   q_gyro_M->Sizes.numU = (0);          /* Number of model inputs */
   q_gyro_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   q_gyro_M->Sizes.numSampTimes = (2);  /* Number of sample times */
-  q_gyro_M->Sizes.numBlocks = (27);    /* Number of blocks */
-  q_gyro_M->Sizes.numBlockIO = (19);   /* Number of block outputs */
+  q_gyro_M->Sizes.numBlocks = (29);    /* Number of blocks */
+  q_gyro_M->Sizes.numBlockIO = (20);   /* Number of block outputs */
   q_gyro_M->Sizes.numBlockPrms = (102);/* Sum of parameter "widths" */
   return q_gyro_M;
 }
