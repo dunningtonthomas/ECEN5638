@@ -18,7 +18,7 @@ A(3,3) = A(3,3) - Kg*km*B(3);
 A(4,3) = A(4,3) - Kg*km*B(4);
 
 % Output eigenvalues
-eig(A)
+eig(A);
 
 % Save the dynamic model matrices
 save('Data\dynamic_model.mat', 'A', 'B', 'C', 'D');

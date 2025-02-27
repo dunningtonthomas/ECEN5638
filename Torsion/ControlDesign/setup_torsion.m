@@ -75,12 +75,59 @@ zetaf = 0.9;
 %
 %% Calculate Control Gain
 if strcmp ( CONTROL_TYPE , 'STUDENT' )
-    Q = diag ( [ 1 1 1 1 ] );
-    R = 1;
+    Q = 800.*[150, 0, 0, 0;
+    0, 700, 0, 0;
+    0, 0, 1, 0;
+    0, 0, 0, 1];
+
+    R = 100;
+
     K = lqr(A, B, Q, R);
 elseif strcmp ( CONTROL_TYPE , 'INSTRUCTOR' )    
     K =  d_torsion_1d_lqr(A,B);   
 end
 %
-%% Display
-K
+%% Load Calculated gains
+load('Data\lqr_k_matrix.mat')
+
+
+
+%% Plot the simulation results
+RUN_SIM = false;
+
+if RUN_SIM
+    close all;
+    sim('s_torsion.mdl')
+
+    % Truncate data to be between 3 and 4 seconds
+    data_theta2 = data_theta2(data_theta2(:,1) <= 4 & data_theta2(:,1) >= 3, :);
+
+    % Plot the results
+    figure();
+    plot(data_theta2(:,1), data_theta2(:,2), 'color', 'r')
+    hold on
+    plot(data_theta2(:,1), data_theta2(:,3), 'color', 'b')
+    xline(3.4)
+    yline(10.5, 'color', 'r')
+    yline(10.2, 'linestyle', ':', 'LineWidth', 2)
+    yline(9.8, 'linestyle', ':', 'LineWidth', 2)
+    yline(10, 'color', 'g', 'LineStyle', '--')
+
+    xlabel('Time (seconds)');
+    ylabel('Theta 2 [deg]');
+    ylim([8 12])
+    grid on;
+    title('Closed-Loop Step Response');
+
+    % Control effort
+    figure();
+    plot(data_vm(:,1), data_vm(:,2))
+    hold on
+    yline(10, 'color', 'r')
+    
+    xlabel('Time (s)')
+    ylabel('Voltage (V)')
+    title('Control Effort')
+
+
+end

@@ -97,5 +97,3 @@ yline(10, 'color', 'r')
 xlabel('Time (s)')
 ylabel('Voltage (V)')
 title('Control Effort')
-
-
