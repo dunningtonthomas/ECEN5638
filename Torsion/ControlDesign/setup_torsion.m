@@ -75,8 +75,14 @@ zetaf = 0.9;
 %
 %% Calculate Control Gain
 if strcmp ( CONTROL_TYPE , 'STUDENT' )
-    Q = 800.*[150, 0, 0, 0;
-    0, 700, 0, 0;
+    % Q = 800.*[150, 0, 0, 0;
+    % 0, 700, 0, 0;
+    % 0, 0, 1, 0;
+    % 0, 0, 0, 1];
+    % 
+    % R = 100;
+    Q = 100.*[100, 0, 0, 0;
+    0, 100, 0, 0;
     0, 0, 1, 0;
     0, 0, 0, 1];
 
@@ -89,6 +95,18 @@ end
 %
 %% Load Calculated gains
 load('Data\lqr_k_matrix.mat')
+
+
+%% PID Gains
+
+% Kp = 3.37;
+% Kd = -0.24;
+% Ki = 2.5;
+
+Kp = 3.37;
+Kd = -0.24;
+Ki = 3;
+
 
 
 

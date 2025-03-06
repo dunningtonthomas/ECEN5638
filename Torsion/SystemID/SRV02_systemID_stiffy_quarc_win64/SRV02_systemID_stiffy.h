@@ -7,9 +7,9 @@
  *
  * Code generation for model "SRV02_systemID_stiffy".
  *
- * Model version              : 9.11
+ * Model version              : 9.13
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Tue Feb 18 14:28:57 2025
+ * C source code generated on : Thu Mar  6 13:00:59 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -979,7 +979,7 @@ struct P_SRV02_systemID_stiffy_T_ {
   real_T ServoCountstoRad_Gain;        /* Expression: -2*pi/2^12
                                         * Referenced by: '<S1>/Servo:  Counts to Rad'
                                         */
-  real_T Step_Time;                    /* Expression: 1
+  real_T Step_Time;                    /* Expression: 0
                                         * Referenced by: '<Root>/Step'
                                         */
   real_T Step_Y0;                      /* Expression: 0
@@ -988,7 +988,7 @@ struct P_SRV02_systemID_stiffy_T_ {
   real_T Step_YFinal;                  /* Expression: 5
                                         * Referenced by: '<Root>/Step'
                                         */
-  real_T Step1_Time;                   /* Expression: 1.1
+  real_T Step1_Time;                   /* Expression: 0.1
                                         * Referenced by: '<Root>/Step1'
                                         */
   real_T Step1_Y0;                     /* Expression: 0

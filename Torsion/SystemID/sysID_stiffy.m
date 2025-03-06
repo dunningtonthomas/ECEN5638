@@ -1,5 +1,5 @@
 %% Process Stiffness data for natural frequency
-load('Data\stiffness_damping.mat')
+%load('Data\stiffness_damping.mat')
 
 %% Calculate Natural Frequency
 % Truncate data
@@ -10,9 +10,6 @@ u_data = u(t > t_cut & t < t_cut_2);
 y_data = y(t > t_cut & t < t_cut_2);
 t_data = t(t > t_cut & t < t_cut_2);
 
-% FFT
-u_fft = fft(u_data)/length(t_data);
-y_fft = fft(y_data)/length(t_data);
 
 % Sampling time
 Ts = 0.002;

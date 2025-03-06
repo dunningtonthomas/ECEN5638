@@ -7,9 +7,9 @@
  *
  * Code generation for model "SRV02_systemID_stiffy".
  *
- * Model version              : 9.11
+ * Model version              : 9.13
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Tue Feb 18 14:28:57 2025
+ * C source code generated on : Thu Mar  6 13:00:59 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -491,15 +491,15 @@ RT_MODEL_SRV02_systemID_stiff_T *SRV02_systemID_stiffy(void)
     SRV02_systemID_stiffy_M->Timing.sampleHits = (&mdlSampleHits[0]);
   }
 
-  rtmSetTFinal(SRV02_systemID_stiffy_M, 5.0);
+  rtmSetTFinal(SRV02_systemID_stiffy_M, 4.0);
   SRV02_systemID_stiffy_M->Timing.stepSize0 = 0.002;
   SRV02_systemID_stiffy_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  SRV02_systemID_stiffy_M->Sizes.checksums[0] = (3408316111U);
-  SRV02_systemID_stiffy_M->Sizes.checksums[1] = (1271157670U);
-  SRV02_systemID_stiffy_M->Sizes.checksums[2] = (1429647090U);
-  SRV02_systemID_stiffy_M->Sizes.checksums[3] = (2326150104U);
+  SRV02_systemID_stiffy_M->Sizes.checksums[0] = (3492367099U);
+  SRV02_systemID_stiffy_M->Sizes.checksums[1] = (4246892438U);
+  SRV02_systemID_stiffy_M->Sizes.checksums[2] = (3147239025U);
+  SRV02_systemID_stiffy_M->Sizes.checksums[3] = (3198854890U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;

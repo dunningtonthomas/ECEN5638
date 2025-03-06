@@ -45,7 +45,3 @@ ylabel('Theta 2 [deg]');
 ylim([8 12])
 grid on;
 title('Closed-Loop Step Response');
-
-
-
-
