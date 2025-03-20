@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_rotpen_swingup_student".
  *
- * Model version              : 12.40
+ * Model version              : 12.61
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Tue Mar 18 15:25:40 2025
+ * C source code generated on : Thu Mar 20 15:07:00 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -870,6 +870,8 @@ typedef struct {
   real_T EncoderCalibrationradcount[2];
                                   /* '<S4>/Encoder Calibration  (rad//count)' */
   real_T Sum;                          /* '<S8>/Sum' */
+  real_T HPFtheta_dotrads;             /* '<S3>/HPF: theta_dot (rad//s)' */
+  real_T HPFalpha_dotrads;             /* '<S3>/HPF: alpha_dot (rad//s)' */
   real_T SliderGain;                   /* '<S6>/Slider Gain' */
   real_T Cos;                          /* '<S11>/Cos' */
   real_T UnaryMinus;                   /* '<S11>/Unary Minus' */
@@ -878,7 +880,8 @@ typedef struct {
   real_T InverseAmplifierGainVV;     /* '<S4>/Inverse Amplifier  Gain (V//V)' */
   real_T Gain;                         /* '<S9>/Gain' */
   real_T Gain_j[2];                    /* '<S10>/Gain' */
-  real_T Vm;                           /* '<S7>/MATLAB Function' */
+  real_T TmpSignalConversionAtToWorkspac[4];/* '<Root>/Find State X' */
+  real_T Clock;                        /* '<Root>/Clock' */
   real_T E;                            /* '<S13>/MATLAB Function' */
   uint8_T Compare;                     /* '<S2>/Compare' */
 } B_q_rotpen_swingup_student_T;
@@ -896,10 +899,6 @@ typedef struct {
   void *HILWriteAnalog_PWORK;          /* '<S4>/HIL Write Analog' */
   struct {
     void *LoggedData;
-  } Scope_PWORK;                       /* '<Root>/Scope' */
-
-  struct {
-    void *LoggedData;
   } alphadeg_PWORK;                    /* '<S5>/alpha (deg)' */
 
   struct {
@@ -912,7 +911,19 @@ typedef struct {
 
   struct {
     void *LoggedData;
-  } Scope_PWORK_n;                     /* '<S7>/Scope' */
+  } ToWorkspace_PWORK;                 /* '<Root>/To Workspace' */
+
+  struct {
+    void *LoggedData;
+  } ToWorkspace2_PWORK;                /* '<Root>/To Workspace2' */
+
+  struct {
+    void *LoggedData;
+  } Scope_PWORK;                       /* '<S7>/Scope' */
+
+  struct {
+    void *LoggedData;
+  } ToWorkspace1_PWORK;                /* '<Root>/To Workspace1' */
 
   int32_T HILInitialize_ClockModes;    /* '<S4>/HIL Initialize' */
   int32_T HILInitialize_QuadratureModes[2];/* '<S4>/HIL Initialize' */

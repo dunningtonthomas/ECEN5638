@@ -6,6 +6,8 @@
 load('Data\stateSpace.mat');
 
 %% Find desired poles
+% zeta = 0.7;
+% wn = 4;
 zeta = 0.7;
 wn = 4;
 p1 = -zeta*wn + 1j*wn*sqrt(1-zeta^2);

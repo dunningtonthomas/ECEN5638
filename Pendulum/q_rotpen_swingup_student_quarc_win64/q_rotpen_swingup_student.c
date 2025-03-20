@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_rotpen_swingup_student".
  *
- * Model version              : 12.40
+ * Model version              : 12.61
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Tue Mar 18 15:25:40 2025
+ * C source code generated on : Thu Mar 20 15:07:00 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -117,8 +117,7 @@ void q_rotpen_swingup_student_output(void)
   real_T rtb_ConverttoVectorState_idx_0;
   real_T rtb_ConverttoVectorState_idx_1;
   real_T rtb_Gain1;
-  real_T rtb_HPFalpha_dotrads;
-  real_T rtb_HPFtheta_dotrads;
+  real_T rtb_Gain1_tmp;
   if (rtmIsMajorTimeStep(q_rotpen_swingup_student_M)) {
     /* set solver stop time */
     if (!(q_rotpen_swingup_student_M->Timing.clockTick0+1)) {
@@ -182,9 +181,12 @@ void q_rotpen_swingup_student_output(void)
       q_rotpen_swingup_student_P.OffsetAnglerad_Value;
   }
 
-  /* SignalGenerator: '<Root>/Signal Generator' */
+  /* SignalGenerator: '<Root>/Signal Generator' incorporates:
+   *  Clock: '<Root>/Clock'
+   */
+  rtb_Gain1_tmp = q_rotpen_swingup_student_M->Timing.t[0];
   rtb_Gain1 = q_rotpen_swingup_student_P.SignalGenerator_Frequency *
-    q_rotpen_swingup_student_M->Timing.t[0];
+    rtb_Gain1_tmp;
   if (rtb_Gain1 - floor(rtb_Gain1) >= 0.5) {
     rtb_Gain1 = q_rotpen_swingup_student_P.SignalGenerator_Amplitude;
   } else {
@@ -211,14 +213,18 @@ void q_rotpen_swingup_student_output(void)
     (&q_rotpen_swingup_student_P.ConverttoVectorState_Gain[2]), tmp_0));
 
   /* TransferFcn: '<S3>/HPF: theta_dot (rad//s)' */
-  rtb_HPFtheta_dotrads = q_rotpen_swingup_student_P.HPFtheta_dotrads_C *
-    q_rotpen_swingup_student_X.HPFtheta_dotrads_CSTATE +
+  q_rotpen_swingup_student_B.HPFtheta_dotrads =
+    q_rotpen_swingup_student_P.HPFtheta_dotrads_C *
+    q_rotpen_swingup_student_X.HPFtheta_dotrads_CSTATE;
+  q_rotpen_swingup_student_B.HPFtheta_dotrads +=
     q_rotpen_swingup_student_P.HPFtheta_dotrads_D *
     q_rotpen_swingup_student_B.EncoderCalibrationradcount[0];
 
   /* TransferFcn: '<S3>/HPF: alpha_dot (rad//s)' */
-  rtb_HPFalpha_dotrads = q_rotpen_swingup_student_P.HPFalpha_dotrads_C *
-    q_rotpen_swingup_student_X.HPFalpha_dotrads_CSTATE +
+  q_rotpen_swingup_student_B.HPFalpha_dotrads =
+    q_rotpen_swingup_student_P.HPFalpha_dotrads_C *
+    q_rotpen_swingup_student_X.HPFalpha_dotrads_CSTATE;
+  q_rotpen_swingup_student_B.HPFalpha_dotrads +=
     q_rotpen_swingup_student_P.HPFalpha_dotrads_D *
     q_rotpen_swingup_student_B.Sum;
 
@@ -240,7 +246,8 @@ void q_rotpen_swingup_student_output(void)
   rtb_Gain1 = cos(q_rotpen_swingup_student_B.EncoderCalibrationradcount[1]);
   q_rotpen_swingup_student_B.E = 0.5 * q_rotpen_swingup_student_P.Mp * 9.81 *
     q_rotpen_swingup_student_P.Lp * (1.0 - rtb_Gain1) + 0.5 *
-    q_rotpen_swingup_student_P.Jp * (rtb_HPFalpha_dotrads * rtb_HPFalpha_dotrads);
+    q_rotpen_swingup_student_P.Jp * (q_rotpen_swingup_student_B.HPFalpha_dotrads
+    * q_rotpen_swingup_student_B.HPFalpha_dotrads);
   if (rtmIsMajorTimeStep(q_rotpen_swingup_student_M)) {
     /* RelationalOperator: '<S2>/Compare' incorporates:
      *  Abs: '<Root>/|alpha|'
@@ -261,7 +268,8 @@ void q_rotpen_swingup_student_output(void)
   }
 
   /* Product: '<S11>/Product1' */
-  rtb_Gain1 = q_rotpen_swingup_student_B.Cos * rtb_HPFalpha_dotrads;
+  rtb_Gain1 = q_rotpen_swingup_student_B.Cos *
+    q_rotpen_swingup_student_B.HPFalpha_dotrads;
 
   /* Signum: '<S11>/Sign' */
   if (rtIsNaN(rtb_Gain1)) {
@@ -318,19 +326,10 @@ void q_rotpen_swingup_student_output(void)
 
   /* End of Saturate: '<S11>/Motor Acceleration Limit' */
 
-  /* MATLAB Function: '<S7>/MATLAB Function' incorporates:
-   *  Constant: '<S7>/Constant'
-   *  Constant: '<S7>/Constant1'
-   *  Constant: '<S7>/Constant2'
-   *  Constant: '<S7>/Constant3'
-   *  Constant: '<S7>/Constant4'
-   *  Constant: '<S7>/Constant5'
-   *  Constant: '<S7>/Constant6'
-   *  Constant: '<S7>/Constant7'
-   *  SignalConversion generated from: '<S12>/ SFunction '
-   */
+  /* MATLAB Function: '<S7>/MATLAB Function' */
   q_rotpen_swingup_student_DW.sfEvent = q_rotpen_swingup_stu_CALL_EVENT;
 
+  /* Switch: '<Root>/Switch' */
   /* MATLAB Function 'Swing-up/MATLAB Function': '<S12>:1' */
   /* '<S12>:1:2' */
   /* '<S12>:1:3' */
@@ -341,15 +340,6 @@ void q_rotpen_swingup_student_output(void)
   /* '<S12>:1:8' */
   /* '<S12>:1:9' */
   /* '<S12>:1:11' */
-  q_rotpen_swingup_student_B.Vm = q_rotpen_swingup_student_P.Rm *
-    q_rotpen_swingup_student_P.Mr * q_rotpen_swingup_student_P.Lr *
-    q_rotpen_swingup_student_B.MotorAccelerationLimit /
-    (q_rotpen_swingup_student_P.eta_g * q_rotpen_swingup_student_P.Kg *
-     q_rotpen_swingup_student_P.eta_m * q_rotpen_swingup_student_P.kt) +
-    q_rotpen_swingup_student_P.Kg * q_rotpen_swingup_student_P.km *
-    rtb_HPFtheta_dotrads;
-
-  /* Switch: '<Root>/Switch' */
   if (q_rotpen_swingup_student_B.Compare >
       q_rotpen_swingup_student_P.Switch_Threshold) {
     /* Switch: '<Root>/Switch' incorporates:
@@ -360,11 +350,30 @@ void q_rotpen_swingup_student_output(void)
       q_rotpen_swingup_student_B.EncoderCalibrationradcount[0]) *
       q_rotpen_swingup_student_P.K[0] + (rtb_ConverttoVectorState_idx_1 -
       q_rotpen_swingup_student_B.Sum) * q_rotpen_swingup_student_P.K[1]) + (tmp
-      [0] - rtb_HPFtheta_dotrads) * q_rotpen_swingup_student_P.K[2]) + (tmp[1] -
-      rtb_HPFalpha_dotrads) * q_rotpen_swingup_student_P.K[3];
+      [0] - q_rotpen_swingup_student_B.HPFtheta_dotrads) *
+      q_rotpen_swingup_student_P.K[2]) + (tmp[1] -
+      q_rotpen_swingup_student_B.HPFalpha_dotrads) *
+      q_rotpen_swingup_student_P.K[3];
   } else {
-    /* Switch: '<Root>/Switch' */
-    q_rotpen_swingup_student_B.Switch = q_rotpen_swingup_student_B.Vm;
+    /* Switch: '<Root>/Switch' incorporates:
+     *  Constant: '<S7>/Constant'
+     *  Constant: '<S7>/Constant1'
+     *  Constant: '<S7>/Constant2'
+     *  Constant: '<S7>/Constant3'
+     *  Constant: '<S7>/Constant4'
+     *  Constant: '<S7>/Constant5'
+     *  Constant: '<S7>/Constant6'
+     *  Constant: '<S7>/Constant7'
+     *  MATLAB Function: '<S7>/MATLAB Function'
+     *  SignalConversion generated from: '<S12>/ SFunction '
+     */
+    q_rotpen_swingup_student_B.Switch = q_rotpen_swingup_student_P.Rm *
+      q_rotpen_swingup_student_P.Mr * q_rotpen_swingup_student_P.Lr *
+      q_rotpen_swingup_student_B.MotorAccelerationLimit /
+      (q_rotpen_swingup_student_P.eta_g * q_rotpen_swingup_student_P.Kg *
+       q_rotpen_swingup_student_P.eta_m * q_rotpen_swingup_student_P.kt) +
+      q_rotpen_swingup_student_P.Kg * q_rotpen_swingup_student_P.km *
+      q_rotpen_swingup_student_B.HPFtheta_dotrads;
   }
 
   /* End of Switch: '<Root>/Switch' */
@@ -416,6 +425,20 @@ void q_rotpen_swingup_student_output(void)
     rtb_ConverttoVectorState_idx_0;
   q_rotpen_swingup_student_B.Gain_j[1] = q_rotpen_swingup_student_P.Gain_Gain_f *
     q_rotpen_swingup_student_B.EncoderCalibrationradcount[0];
+  if (rtmIsMajorTimeStep(q_rotpen_swingup_student_M)) {
+    /* SignalConversion generated from: '<Root>/To Workspace' */
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[0] =
+      q_rotpen_swingup_student_B.EncoderCalibrationradcount[0];
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[1] =
+      q_rotpen_swingup_student_B.Sum;
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[2] =
+      q_rotpen_swingup_student_B.HPFtheta_dotrads;
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[3] =
+      q_rotpen_swingup_student_B.HPFalpha_dotrads;
+  }
+
+  /* Clock: '<Root>/Clock' */
+  q_rotpen_swingup_student_B.Clock = rtb_Gain1_tmp;
   if (rtmIsMajorTimeStep(q_rotpen_swingup_student_M)) {
   }
 }
@@ -876,10 +899,10 @@ RT_MODEL_q_rotpen_swingup_stu_T *q_rotpen_swingup_student(void)
   q_rotpen_swingup_student_M->Timing.stepSize1 = 0.002;
 
   /* External mode info */
-  q_rotpen_swingup_student_M->Sizes.checksums[0] = (2916917519U);
-  q_rotpen_swingup_student_M->Sizes.checksums[1] = (1831194662U);
-  q_rotpen_swingup_student_M->Sizes.checksums[2] = (2362199999U);
-  q_rotpen_swingup_student_M->Sizes.checksums[3] = (363573245U);
+  q_rotpen_swingup_student_M->Sizes.checksums[0] = (1839794884U);
+  q_rotpen_swingup_student_M->Sizes.checksums[1] = (3840990631U);
+  q_rotpen_swingup_student_M->Sizes.checksums[2] = (1900787730U);
+  q_rotpen_swingup_student_M->Sizes.checksums[3] = (1742638731U);
 
   {
     static const sysRanDType rtAlwaysEnabled = SUBSYS_RAN_BC_ENABLE;
@@ -916,6 +939,8 @@ RT_MODEL_q_rotpen_swingup_stu_T *q_rotpen_swingup_student(void)
     q_rotpen_swingup_student_B.EncoderCalibrationradcount[0] = 0.0;
     q_rotpen_swingup_student_B.EncoderCalibrationradcount[1] = 0.0;
     q_rotpen_swingup_student_B.Sum = 0.0;
+    q_rotpen_swingup_student_B.HPFtheta_dotrads = 0.0;
+    q_rotpen_swingup_student_B.HPFalpha_dotrads = 0.0;
     q_rotpen_swingup_student_B.SliderGain = 0.0;
     q_rotpen_swingup_student_B.Cos = 0.0;
     q_rotpen_swingup_student_B.UnaryMinus = 0.0;
@@ -925,7 +950,11 @@ RT_MODEL_q_rotpen_swingup_stu_T *q_rotpen_swingup_student(void)
     q_rotpen_swingup_student_B.Gain = 0.0;
     q_rotpen_swingup_student_B.Gain_j[0] = 0.0;
     q_rotpen_swingup_student_B.Gain_j[1] = 0.0;
-    q_rotpen_swingup_student_B.Vm = 0.0;
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[0] = 0.0;
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[1] = 0.0;
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[2] = 0.0;
+    q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac[3] = 0.0;
+    q_rotpen_swingup_student_B.Clock = 0.0;
     q_rotpen_swingup_student_B.E = 0.0;
   }
 
@@ -991,8 +1020,8 @@ RT_MODEL_q_rotpen_swingup_stu_T *q_rotpen_swingup_student(void)
   q_rotpen_swingup_student_M->Sizes.numU = (0);/* Number of model inputs */
   q_rotpen_swingup_student_M->Sizes.sysDirFeedThru = (0);/* The model is not direct feedthrough */
   q_rotpen_swingup_student_M->Sizes.numSampTimes = (2);/* Number of sample times */
-  q_rotpen_swingup_student_M->Sizes.numBlocks = (65);/* Number of blocks */
-  q_rotpen_swingup_student_M->Sizes.numBlockIO = (13);/* Number of block outputs */
+  q_rotpen_swingup_student_M->Sizes.numBlocks = (69);/* Number of blocks */
+  q_rotpen_swingup_student_M->Sizes.numBlockIO = (17);/* Number of block outputs */
   q_rotpen_swingup_student_M->Sizes.numBlockPrms = (114);/* Sum of parameter "widths" */
   return q_rotpen_swingup_student_M;
 }

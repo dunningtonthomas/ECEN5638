@@ -534,8 +534,8 @@
         ;%
         ;% Auto data (q_rotpen_swingup_student_B)
         ;%
-            section.nData     = 12;
-            section.data(12)  = dumData; %prealloc
+            section.nData     = 15;
+            section.data(15)  = dumData; %prealloc
 
                     ;% q_rotpen_swingup_student_B.EncoderCalibrationradcount
                     section.data(1).logicalSrcIdx = 0;
@@ -545,45 +545,57 @@
                     section.data(2).logicalSrcIdx = 1;
                     section.data(2).dtTransOffset = 2;
 
-                    ;% q_rotpen_swingup_student_B.SliderGain
+                    ;% q_rotpen_swingup_student_B.HPFtheta_dotrads
                     section.data(3).logicalSrcIdx = 2;
                     section.data(3).dtTransOffset = 3;
 
-                    ;% q_rotpen_swingup_student_B.Cos
+                    ;% q_rotpen_swingup_student_B.HPFalpha_dotrads
                     section.data(4).logicalSrcIdx = 3;
                     section.data(4).dtTransOffset = 4;
 
-                    ;% q_rotpen_swingup_student_B.UnaryMinus
+                    ;% q_rotpen_swingup_student_B.SliderGain
                     section.data(5).logicalSrcIdx = 4;
                     section.data(5).dtTransOffset = 5;
 
-                    ;% q_rotpen_swingup_student_B.MotorAccelerationLimit
+                    ;% q_rotpen_swingup_student_B.Cos
                     section.data(6).logicalSrcIdx = 5;
                     section.data(6).dtTransOffset = 6;
 
-                    ;% q_rotpen_swingup_student_B.Switch
+                    ;% q_rotpen_swingup_student_B.UnaryMinus
                     section.data(7).logicalSrcIdx = 6;
                     section.data(7).dtTransOffset = 7;
 
-                    ;% q_rotpen_swingup_student_B.InverseAmplifierGainVV
+                    ;% q_rotpen_swingup_student_B.MotorAccelerationLimit
                     section.data(8).logicalSrcIdx = 7;
                     section.data(8).dtTransOffset = 8;
 
-                    ;% q_rotpen_swingup_student_B.Gain
+                    ;% q_rotpen_swingup_student_B.Switch
                     section.data(9).logicalSrcIdx = 8;
                     section.data(9).dtTransOffset = 9;
 
-                    ;% q_rotpen_swingup_student_B.Gain_j
+                    ;% q_rotpen_swingup_student_B.InverseAmplifierGainVV
                     section.data(10).logicalSrcIdx = 9;
                     section.data(10).dtTransOffset = 10;
 
-                    ;% q_rotpen_swingup_student_B.Vm
+                    ;% q_rotpen_swingup_student_B.Gain
                     section.data(11).logicalSrcIdx = 10;
-                    section.data(11).dtTransOffset = 12;
+                    section.data(11).dtTransOffset = 11;
+
+                    ;% q_rotpen_swingup_student_B.Gain_j
+                    section.data(12).logicalSrcIdx = 11;
+                    section.data(12).dtTransOffset = 12;
+
+                    ;% q_rotpen_swingup_student_B.TmpSignalConversionAtToWorkspac
+                    section.data(13).logicalSrcIdx = 12;
+                    section.data(13).dtTransOffset = 14;
+
+                    ;% q_rotpen_swingup_student_B.Clock
+                    section.data(14).logicalSrcIdx = 13;
+                    section.data(14).dtTransOffset = 18;
 
                     ;% q_rotpen_swingup_student_B.E
-                    section.data(12).logicalSrcIdx = 11;
-                    section.data(12).dtTransOffset = 13;
+                    section.data(15).logicalSrcIdx = 15;
+                    section.data(15).dtTransOffset = 19;
 
             nTotData = nTotData + section.nData;
             sigMap.sections(1) = section;
@@ -593,7 +605,7 @@
             section.data(1)  = dumData; %prealloc
 
                     ;% q_rotpen_swingup_student_B.Compare
-                    section.data(1).logicalSrcIdx = 12;
+                    section.data(1).logicalSrcIdx = 16;
                     section.data(1).dtTransOffset = 0;
 
             nTotData = nTotData + section.nData;
@@ -694,32 +706,40 @@
             dworkMap.sections(3) = section;
             clear section
 
-            section.nData     = 6;
-            section.data(6)  = dumData; %prealloc
+            section.nData     = 8;
+            section.data(8)  = dumData; %prealloc
 
                     ;% q_rotpen_swingup_student_DW.HILWriteAnalog_PWORK
                     section.data(1).logicalSrcIdx = 8;
                     section.data(1).dtTransOffset = 0;
 
-                    ;% q_rotpen_swingup_student_DW.Scope_PWORK.LoggedData
+                    ;% q_rotpen_swingup_student_DW.alphadeg_PWORK.LoggedData
                     section.data(2).logicalSrcIdx = 9;
                     section.data(2).dtTransOffset = 1;
 
-                    ;% q_rotpen_swingup_student_DW.alphadeg_PWORK.LoggedData
+                    ;% q_rotpen_swingup_student_DW.thetadeg_PWORK.LoggedData
                     section.data(3).logicalSrcIdx = 10;
                     section.data(3).dtTransOffset = 2;
 
-                    ;% q_rotpen_swingup_student_DW.thetadeg_PWORK.LoggedData
+                    ;% q_rotpen_swingup_student_DW.VmV_PWORK.LoggedData
                     section.data(4).logicalSrcIdx = 11;
                     section.data(4).dtTransOffset = 3;
 
-                    ;% q_rotpen_swingup_student_DW.VmV_PWORK.LoggedData
+                    ;% q_rotpen_swingup_student_DW.ToWorkspace_PWORK.LoggedData
                     section.data(5).logicalSrcIdx = 12;
                     section.data(5).dtTransOffset = 4;
 
-                    ;% q_rotpen_swingup_student_DW.Scope_PWORK_n.LoggedData
+                    ;% q_rotpen_swingup_student_DW.ToWorkspace2_PWORK.LoggedData
                     section.data(6).logicalSrcIdx = 13;
                     section.data(6).dtTransOffset = 5;
+
+                    ;% q_rotpen_swingup_student_DW.Scope_PWORK.LoggedData
+                    section.data(7).logicalSrcIdx = 14;
+                    section.data(7).dtTransOffset = 6;
+
+                    ;% q_rotpen_swingup_student_DW.ToWorkspace1_PWORK.LoggedData
+                    section.data(8).logicalSrcIdx = 15;
+                    section.data(8).dtTransOffset = 7;
 
             nTotData = nTotData + section.nData;
             dworkMap.sections(4) = section;
@@ -729,27 +749,27 @@
             section.data(6)  = dumData; %prealloc
 
                     ;% q_rotpen_swingup_student_DW.HILInitialize_ClockModes
-                    section.data(1).logicalSrcIdx = 14;
+                    section.data(1).logicalSrcIdx = 16;
                     section.data(1).dtTransOffset = 0;
 
                     ;% q_rotpen_swingup_student_DW.HILInitialize_QuadratureModes
-                    section.data(2).logicalSrcIdx = 15;
+                    section.data(2).logicalSrcIdx = 17;
                     section.data(2).dtTransOffset = 1;
 
                     ;% q_rotpen_swingup_student_DW.HILInitialize_InitialEICounts
-                    section.data(3).logicalSrcIdx = 16;
+                    section.data(3).logicalSrcIdx = 18;
                     section.data(3).dtTransOffset = 3;
 
                     ;% q_rotpen_swingup_student_DW.HILReadEncoderTimebase_Buffer
-                    section.data(4).logicalSrcIdx = 17;
+                    section.data(4).logicalSrcIdx = 19;
                     section.data(4).dtTransOffset = 5;
 
                     ;% q_rotpen_swingup_student_DW.sfEvent
-                    section.data(5).logicalSrcIdx = 18;
+                    section.data(5).logicalSrcIdx = 20;
                     section.data(5).dtTransOffset = 7;
 
                     ;% q_rotpen_swingup_student_DW.sfEvent_h
-                    section.data(6).logicalSrcIdx = 19;
+                    section.data(6).logicalSrcIdx = 21;
                     section.data(6).dtTransOffset = 8;
 
             nTotData = nTotData + section.nData;
@@ -760,11 +780,11 @@
             section.data(2)  = dumData; %prealloc
 
                     ;% q_rotpen_swingup_student_DW.doneDoubleBufferReInit
-                    section.data(1).logicalSrcIdx = 20;
+                    section.data(1).logicalSrcIdx = 22;
                     section.data(1).dtTransOffset = 0;
 
                     ;% q_rotpen_swingup_student_DW.doneDoubleBufferReInit_g
-                    section.data(2).logicalSrcIdx = 21;
+                    section.data(2).logicalSrcIdx = 23;
                     section.data(2).dtTransOffset = 1;
 
             nTotData = nTotData + section.nData;
@@ -797,8 +817,8 @@
     ;%
 
 
-    targMap.checksum0 = 2916917519;
-    targMap.checksum1 = 1831194662;
-    targMap.checksum2 = 2362199999;
-    targMap.checksum3 = 363573245;
+    targMap.checksum0 = 1839794884;
+    targMap.checksum1 = 3840990631;
+    targMap.checksum2 = 1900787730;
+    targMap.checksum3 = 1742638731;
 

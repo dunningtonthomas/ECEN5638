@@ -7,9 +7,9 @@
  *
  * Code generation for model "q_rotpen_swingup_student".
  *
- * Model version              : 12.40
+ * Model version              : 12.61
  * Simulink Coder version : 24.1 (R2024a) 19-Nov-2023
- * C source code generated on : Tue Mar 18 15:25:40 2025
+ * C source code generated on : Thu Mar 20 15:07:00 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -73,7 +73,7 @@ static const char_T * rtDataTypeNames[] = {
 /* data type transitions for block I/O structure */
 static DataTypeTransition rtBTransitions[] = {
   { (char_T *)(&q_rotpen_swingup_student_B.EncoderCalibrationradcount[0]), 0, 0,
-    14 },
+    20 },
 
   { (char_T *)(&q_rotpen_swingup_student_B.Compare), 3, 0, 1 }
   ,
@@ -86,7 +86,7 @@ static DataTypeTransition rtBTransitions[] = {
   { (char_T *)(&q_rotpen_swingup_student_DW.HILReadEncoderTimebase_Task), 16, 0,
     1 },
 
-  { (char_T *)(&q_rotpen_swingup_student_DW.HILWriteAnalog_PWORK), 11, 0, 6 },
+  { (char_T *)(&q_rotpen_swingup_student_DW.HILWriteAnalog_PWORK), 11, 0, 8 },
 
   { (char_T *)(&q_rotpen_swingup_student_DW.HILInitialize_ClockModes), 6, 0, 9 },
 
